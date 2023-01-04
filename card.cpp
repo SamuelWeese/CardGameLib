@@ -17,6 +17,8 @@ card::card(sf::RenderWindow *displayWindow, sf::Texture *front, sf::Texture *bac
     this->setSize(width, height);
     this->setOutline();
     this->setPosition(100, 100);
+
+    this->name = name;
 }
 void card::draw()
 {
@@ -79,4 +81,10 @@ void card::setOutline(sf::Color outlineColor, float outlineWidth)
     this->cardFront.setOutlineColor(outlineColor);
     this->cardBack.setOutlineThickness(outlineWidth);
     this->cardFront.setOutlineThickness(outlineWidth);
+}
+
+void card::setRotation(float aRotation)
+{
+    this->cardBack.setRotation(aRotation);
+    this->cardFront.setRotation(aRotation);
 }

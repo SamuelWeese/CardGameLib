@@ -18,6 +18,7 @@
 
 class deck
 {
+protected:
     std::vector<card> cardSet;
     sf::RenderWindow *renderTarget;
     card *selectedCard;

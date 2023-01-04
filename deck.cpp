@@ -110,4 +110,6 @@ void deck::playCard(card *aCard)
         tempPtr = this->selectedCard;
     }
 
+
+
 }
