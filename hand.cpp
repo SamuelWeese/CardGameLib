@@ -18,6 +18,14 @@ void hand::setPosition()
     for (int i  = 0; i < cardSet.size(); i++)
     {
         float totalRotation = (middle - i)*(-1)*(this->curved);
+        while (totalRotation > 360)
+        {
+            totalRotation -= 360;
+        }
+        while (totalRotation < 0)
+        {
+            totalRotation += 360;
+        }
         cardSet[i].setRotation(totalRotation);
     }
 }
