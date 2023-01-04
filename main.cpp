@@ -29,8 +29,10 @@ int main(void)
         deck aDeck(&window, 10,10);
         card aCard(&window, &aTexture, &aTexture, "Gabagool");
         card aCard3(&window, &aTexture2, &aTexture2, "Gabagool");
+        card aCard4(&window, &aTexture2, &aTexture2, "Gabagool");
         aDeck.placeBottom(aCard);
         aDeck.placeBottom(aCard3);
+        aDeck.placeBottom(aCard4);
         while (window.isOpen())
         {
 

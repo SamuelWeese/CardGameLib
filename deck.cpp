@@ -27,7 +27,7 @@ deck::~deck()
 bool deck::shuffle() // needs to be reimplemented
 {
     auto rng = std::default_random_engine {};
-    std::shuffle(std::begin(this->cardSet), std::end(this->cardSet), rng);
+    std::shuffle(this->cardSet.begin(), this->cardSet.end(), rng);
     std::cout << "Shuffling!" << std::endl;
     return true;
 }
