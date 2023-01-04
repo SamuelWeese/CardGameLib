@@ -1,16 +1,36 @@
 #include <iostream>
-#include "card.h"
+#include "deck.h"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window.hpp>
 
-#define windowSizeLength 720
+#define windowSizeLength 1000
 
-#define windowSizeHeight 720
+#define windowSizeHeight 1000
 
 int main(void)
 {
-        sf::RenderWindow window(sf::VideoMode(windowSizeLength, windowSizeHeight), "Hannoi Tower");
+        sf::Image BAD_TEXTURE;
+        BAD_TEXTURE.create(10,10, sf::Color::Cyan);
+        static sf::Texture aTexture;
+        if (!aTexture.loadFromFile("/tmp/testing2.png"))
+        {
+            aTexture.loadFromImage(BAD_TEXTURE);
+        }
+        sf::Image BAD_TEXTURE2;
+        BAD_TEXTURE2.create(10,10, sf::Color::Red);
+        static sf::Texture aTexture2;
+        if (!aTexture2.loadFromFile("/tmp/testing2.png"))
+        {
+            aTexture2.loadFromImage(BAD_TEXTURE2);
+        }
+        sf::RenderWindow window(sf::VideoMode(windowSizeLength, windowSizeHeight), "Card Lib Testing");
 
+
+        deck aDeck(&window, 10,10);
+        card aCard(&window, &aTexture, &aTexture, "Gabagool");
+        card aCard3(&window, &aTexture2, &aTexture2, "Gabagool");
+        aDeck.placeBottom(aCard);
+        aDeck.placeBottom(aCard3);
         while (window.isOpen())
         {
 
@@ -30,14 +50,18 @@ int main(void)
                         std::cout << "the right button was pressed" << std::endl;
                         std::cout << "mouse x: " << event.mouseButton.x << std::endl;
                         std::cout << "mouse y: " << event.mouseButton.y << std::endl;
+                        aDeck.shuffle();
                     }
                     break;
+                default:
+                    ;
                 }
 
                 if (event.type == sf::Event::Closed)
                     window.close();
 
             }
+            aDeck.draw();
             window.display();
             window.clear();
         }
