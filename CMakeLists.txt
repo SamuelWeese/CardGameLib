@@ -18,11 +18,26 @@ find_package(SFML 2.5
 
 set ( TEMP_CPP_TESTING_SOURCES
   main.cpp
-  card.cpp
-  deck.cpp
   )
 
-add_executable(${PROJECT_NAME} ${PROJECT_CPP_SOURCES} ${TEMP_CPP_TESTING_SOURCES})
+Set( PROJECT_CPP_SOURCES
+    card.cpp
+    deck.cpp
+    hand.cpp
+)
+
+SET ( PROJECT_CPP_HEADERS
+    card.h
+    deck.h
+    hand.h
+)
+
+add_executable(
+    ${PROJECT_NAME}
+    ${PROJECT_CPP_SOURCES}
+    ${TEMP_CPP_TESTING_SOURCES}
+    ${PROJECT_CPP_HEADERS}
+)
 
 target_link_libraries(
  ${PROJECT_NAME}

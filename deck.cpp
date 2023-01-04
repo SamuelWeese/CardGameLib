@@ -13,15 +13,22 @@ deck::deck(sf::RenderWindow *renderTarget)
     this->renderTarget = renderTarget;
 }
 
+deck::deck(sf::RenderWindow *renderTarget, int width, int height)
+{
+    this->renderTarget = renderTarget;
+}
+
 deck::~deck()
 {
 
 }
-bool deck::shuffle()
-{
+#include <iostream>
 
+bool deck::shuffle() // needs to be reimplemented
+{
     auto rng = std::default_random_engine {};
     std::shuffle(std::begin(this->cardSet), std::end(this->cardSet), rng);
+    std::cout << "Shuffling!" << std::endl;
     return true;
 }
 
@@ -64,15 +71,43 @@ card deck::copyBottom()
     }
     return retCard;
 }
+
 bool deck::placeBottom(card aCard)
 {
     cardSet.insert(cardSet.begin(), aCard);
+    return true;
 }
+
 bool deck::placeTop(card aCard)
 {
     cardSet.emplace_back(aCard);
+    return true;
 }
+
 void deck::draw()
 {
+   this->cardSet[VECTOR_FRONT].draw();
+}
+
+void deck::setPosition()
+{
+    for (card i : this->cardSet)
+    {
+        if (this->selectedCard == &i)
+        {
+            continue;
+        }
+        i.setPosition(this->x, this->y);
+    }
+}
+
+void deck::playCard(card *aCard)
+{
+    card *tempPtr = aCard;
+
+    if (aCard == nullptr) // selectedCard pointer is not static, so no easy default
+    {
+        tempPtr = this->selectedCard;
+    }
 
 }
