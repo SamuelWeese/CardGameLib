@@ -12,7 +12,7 @@ class card
     player *owner;
     bool mouseDrag;
 public:
-    std::string id;
+    std::string name;
     sf::RectangleShape cardBack;
     sf::RectangleShape cardFront;
     bool faceUp;
@@ -25,6 +25,7 @@ public:
     void setSize(int x, int y);
     void setPosition(int x, int y);
     void setOutline(sf::Color = sf::Color::White, float outineWidth = 1);
+    void setRotation(float aRotation = 0);
 
 };
 
